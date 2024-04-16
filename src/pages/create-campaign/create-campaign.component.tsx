@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Steps } from "antd";
@@ -50,7 +51,7 @@ const Campaign: React.FC = () => {
       bidding_strategy: "",
       bid_amount: 0,
     },
-    resolver: yupResolver(campaignFormValidationSchema),
+    resolver: yupResolver(campaignFormValidationSchema) as any,
   });
 
   console.log(getValuesCampaign(), "formState");
@@ -70,7 +71,7 @@ const Campaign: React.FC = () => {
       keywords: "",
       keyword_match_types: "",
     },
-    resolver: yupResolver(adGroupFormValidationSchema),
+    resolver: yupResolver(adGroupFormValidationSchema) as any,
   });
 
   const {
@@ -98,7 +99,7 @@ const Campaign: React.FC = () => {
 
   return (
     <div>
-      <Header props={{ title: "Add new Campaign" }} />
+      <Header props={{ title: "Add New Campaign" }} />
       <div className="p-12 bg-white">
         <Steps
           current={current}
