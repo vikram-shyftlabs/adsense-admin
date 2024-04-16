@@ -117,7 +117,7 @@ function SelectBase({
                 onClick={() => {
                   setSelected(option.id);
                   console.log(id, option.id, "id, option.id");
-                  setValue(id, option.id);
+                  setValue(id, option.value);
                   setDropdownOpen(false);
                 }}
               >

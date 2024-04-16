@@ -8,6 +8,7 @@ const CreateCampaignForm = ({
   onSubmitCampaign,
   handleSubmitCampaign,
   setValuesCampaign,
+  setValuesAdGroup,
   registerCampaign,
   registerAdGroup,
   errorsCampaign,
@@ -37,6 +38,7 @@ const CreateCampaignForm = ({
           register={registerAdGroup}
           setCurrent={setCurrent}
           onSubmit={onSubmitAdGroup}
+          setValuesAdGroup={setValuesAdGroup}
           handleSubmit={handleSubmitAdGroup}
         />
       ) : current === 2 ? (
@@ -47,10 +49,7 @@ const CreateCampaignForm = ({
           onSubmit={onSubmitAd}
           handleSubmit={handleSubmitAd}
         />
-      ) : null}
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
+      ) : null}      
     </div>
   );
 };
