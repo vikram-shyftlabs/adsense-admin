@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import Transition from '../../utils/Transition';
+import React, { useState, useRef, useEffect } from "react";
+import Transition from "../../utils/Transition";
 import { UseFormRegister } from "react-hook-form";
 
 interface IValueMap {
@@ -11,14 +11,23 @@ interface IValueMap {
 interface ISelectProps {
   label: string;
   options: Array<IValueMap>;
-  customClass?: React.ComponentProps<'div'>['className'];
+  customClass?: React.ComponentProps<"div">["className"];
   helperText?: string;
-  errorMessage?:string;
-  register?: UseFormRegister<any>;
+  errorMessage?: string;
+  register: UseFormRegister<any>;
   id: string;
 }
 
-function SelectBase({label, options, customClass, helperText, errorMessage, register, id}: ISelectProps) {
+function SelectBase({
+  label,
+  options,
+  customClass,
+  helperText,
+  errorMessage,
+  register,
+  setValue,
+  id,
+}: ISelectProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selected, setSelected] = useState(options[0]?.id);
 
@@ -27,7 +36,7 @@ function SelectBase({label, options, customClass, helperText, errorMessage, regi
 
   // close on click outside
   useEffect(() => {
-    const clickHandler = ({target}) => {
+    const clickHandler = ({ target }) => {
       if (!dropdown.current) return;
       if (
         !dropdownOpen ||
@@ -37,18 +46,18 @@ function SelectBase({label, options, customClass, helperText, errorMessage, regi
         return;
       setDropdownOpen(false);
     };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
   });
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({keyCode}) => {
+    const keyHandler = ({ keyCode }) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
     };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
   });
 
   return (
@@ -66,7 +75,6 @@ function SelectBase({label, options, customClass, helperText, errorMessage, regi
           onClick={() => setDropdownOpen(!dropdownOpen)}
           aria-expanded={dropdownOpen}
         >
-          {console.log(options, selected, `options[selected]`)}
           <span className="flex items-center pl-3">
             <span>{options[selected].value}</span>
           </span>
@@ -90,11 +98,13 @@ function SelectBase({label, options, customClass, helperText, errorMessage, regi
           leaveStart="opacity-100"
           leaveEnd="opacity-0"
         >
+          {console.log(id, "id in select input")}
           <div
             ref={dropdown}
             className="font-medium text-sm text-slate-600"
             onFocus={() => setDropdownOpen(true)}
             onBlur={() => setDropdownOpen(false)}
+            {...register(id)}
           >
             {options.map((option) => (
               <button
@@ -102,18 +112,18 @@ function SelectBase({label, options, customClass, helperText, errorMessage, regi
                 type="button"
                 tabIndex="0"
                 className={`flex items-center w-full  hover:bg-slate-50 py-1 px-3 cursor-pointer ${
-                  option.id === selected && 'text-indigo-500'
+                  option.id === selected && "text-indigo-500"
                 }`}
-                {...(register ? register(id) : {})}
                 onClick={() => {
                   setSelected(option.id);
+                  console.log(id, option.id, "id, option.id");
+                  setValue(id, option.id);
                   setDropdownOpen(false);
-                  
                 }}
               >
                 <svg
                   className={`shrink-0 mr-2 fill-current text-indigo-500 ${
-                    option.id !== selected && 'invisible'
+                    option.id !== selected && "invisible"
                   }`}
                   width="12"
                   height="9"
