@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import FacebookLogin from "react-facebook-login";
 import { GoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
-  const [login, setLogin] = useState(false);
-  const [data, setData] = useState({});
-
-  const thirdPartyLoginHandler = ({ response, provider, error }) => {
+  const thirdPartyLoginHandler = ({ response, provider, error }: any) => {
     // console.log(" response>>", response)
     // console.log(" provider>>", provider)
     // console.log(" error>>", error)
@@ -14,7 +11,10 @@ const Login = () => {
     // dispatch(login({ user: response, provider, error }));
   };
 
-  const responseFacebook = (response) => {
+  const responseFacebook = (response: {
+    status: string | undefined;
+    error: any;
+  }) => {
     // console.log('response >>>', response);
     if (
       response.status === "unknown" ||
@@ -48,7 +48,6 @@ const Login = () => {
           <FacebookLogin
             appId="2192834227588742"
             fields="name,email,picture"
-            className="rounded-2"
             callback={responseFacebook}
             textButton="Login with Facebook"
           />
