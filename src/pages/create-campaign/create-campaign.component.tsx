@@ -1,36 +1,71 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Steps } from 'antd';
+import { Steps } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { campaignFormValidationSchema } from "../../helpers/schema.yup";
+import {
+  campaignFormValidationSchema,
+  adGroupFormValidationSchema,
+} from "../../helpers/schema.yup";
 import CreateCampaignForm from "../../components/create-campaign/create-campaign-form.jsx";
 
 import Header from "../../components/header/header.component";
 interface CampaignCreate {
-  campaign_name: string;
-  adItem_name: string;
+  name: string;
+  platform: string;
+  objective: string;
+  daily_budget: number;
+  start_date: string;
+  end_date: string;
+  bidding_strategy: string;
+  bid_amount: number;
 }
 
+interface AdGroupCreate {
+  name: string;
+  geographic_targeting: string;
+  language_targeting: string;
+  age_targeting: string;
+  keywords: string;
+  keyword_match_types: string;
+}
 const Campaign: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const {
+    getValues: getValuesCampaign,
+    setValue: setValuesCampaign,
     register: registerCampaign,
     handleSubmit: handleSubmitCampaign,
     formState: { errors: campaignErrors },
   } = useForm<CampaignCreate>({
     defaultValues: {
-      campaign_name: "",
-      adItem_name: "",
+      name: "",
+      platform: "",
+      objective: "",
+      daily_budget: 0,
+      start_date: "",
+      end_date: "",
+      bidding_strategy: "",
+      bid_amount: 0,
     },
     resolver: yupResolver(campaignFormValidationSchema),
   });
+
+  console.log(getValuesCampaign(), "formState");
 
   const {
     register: registerAdGroup,
     handleSubmit: handleSubmitAdGroup,
     formState: { errors: adGroupErrors },
   } = useForm<AdGroupCreate>({
-    // Define your AdGroup form configuration here
+    defaultValues: {
+      name: "",
+      geographic_targeting: "",
+      language_targeting: "",
+      age_targeting: "",
+      keywords: "",
+      keyword_match_types: "",
+    },
+    resolver: yupResolver(adGroupFormValidationSchema),
   });
 
   const {
@@ -42,6 +77,7 @@ const Campaign: React.FC = () => {
   });
 
   const onSubmitCampaign = (formData: CampaignCreate) => {
+    alert("called");
     console.log(formData, "Campaign formData");
     setCurrent(current + 1); // Move to next step
   };
@@ -59,26 +95,38 @@ const Campaign: React.FC = () => {
   return (
     <div>
       <Header props={{ title: "Add new Campaign" }} />
-      <div className="p-12">
+      <div className="p-12 bg-white">
         <Steps
           current={current}
           items={[
             {
-              title: 'Campaign',
+              title: "Campaign",
             },
             {
-              title: 'Ad Group',
+              title: "Ad Group",
             },
             {
-              title: 'Ads',
+              title: "Ads",
             },
           ]}
         />
-        <CreateCampaignForm current={current}
-         onSubmitCampaign={onSubmitCampaign} handleSubmitCampaign={handleSubmitCampaign} registerCampaign={registerCampaign} errorsCampaign={campaignErrors}
-         onSubmitAdGroup={onSubmitAdGroup} handleSubmitAdGroup={handleSubmitAdGroup} registerAdGroup={registerAdGroup} errorsAdGroup={adGroupErrors}
-         onSubmitAd={onSubmitAd} handleSubmitAd={handleSubmitAd} registerAd={registerAd} errorsAd={adErrors}
-         setCurrent={setCurrent} />
+        <CreateCampaignForm
+          current={current}
+          onSubmitCampaign={onSubmitCampaign}
+          handleSubmitCampaign={handleSubmitCampaign}
+          registerCampaign={registerCampaign}
+          setValuesCampaign={setValuesCampaign}
+          errorsCampaign={campaignErrors}
+          onSubmitAdGroup={onSubmitAdGroup}
+          handleSubmitAdGroup={handleSubmitAdGroup}
+          registerAdGroup={registerAdGroup}
+          errorsAdGroup={adGroupErrors}
+          onSubmitAd={onSubmitAd}
+          handleSubmitAd={handleSubmitAd}
+          registerAd={registerAd}
+          errorsAd={adErrors}
+          setCurrent={setCurrent}
+        />
       </div>
     </div>
   );

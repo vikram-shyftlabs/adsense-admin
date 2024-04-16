@@ -15,22 +15,23 @@ const ages = [
   { id: 1, value: "20-30" },
 ];
 const keywords = [
-  { id: 0, value: "broad"},
-  { id: 1, value: "phrase"},
-  { id: 2, value: "exact"},
+  { id: 0, value: "broad" },
+  { id: 1, value: "phrase" },
+  { id: 2, value: "exact" },
 ];
 
-const AdGroupForm = ({ errors, register, setCurrent }) => {
+const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit }) => {
+  console.log(errors);
   return (
     <div className="min-h-[70vh] p-10 relative">
-      <div className="grid grid-cols-2 gap-10">
+      <form className="grid grid-cols-2 gap-10" onSubmit={handleSubmit(onSubmit)}>
         <TextInput
-          isRequired
+          // isRequired
           id="name"
           label="Ad Group/Set Name"
           placeholder="Enter Ad Group"
           register={register}
-          errorMessage={errors?.adItem_name?.message}
+          errorMessage={errors?.name?.message}
         />
         <SelectBase
           id="geographic_targeting"
@@ -48,13 +49,14 @@ const AdGroupForm = ({ errors, register, setCurrent }) => {
           options={ages}
         />
         <TextInput
-          isRequired
+          // isRequired
           id="keywords"
           label="Keywords"
           register={register}
           placeholder="Enter keywords"
-          errorMessage={errors.keywords?.message}
+          errorMessage={errors?.keywords?.message} // Updated property name to 'keywords'
         />
+
         <SelectBase
           id="keyword_match_types"
           label="Select Keyword Match Types"
@@ -62,11 +64,11 @@ const AdGroupForm = ({ errors, register, setCurrent }) => {
         />
         <button
           className="absolute bottom-5 right-5 mr-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setCurrent(2)}
+          type="submit"
         >
           Next
         </button>
-      </div>
+      </form>
     </div>
   );
 };
