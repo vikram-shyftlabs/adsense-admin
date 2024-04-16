@@ -86,20 +86,25 @@ const CampaignForm = ({
           <input
             id="start_date"
             type="date"
+            {...register("start_date")}
             onChange={(event) => {
-              console.log(event.target.value);
+              setValue(id, event.target.value)
             }}
           />
         </div>
         <div className="flex flex-col gap-1">
           <label className="font-semibold"> End Date</label>
-          <input id="end_date" type="date" onChange={(event) => {}} />
+          <input id="end_date" type="date" {...register("end_date")}
+            onChange={(event) => {
+              setValue(id, event.target.value)
+            }}
+          />
         </div>
         <button
           className="absolute bottom-5 right-5 mr-10 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-8 rounded"
           type="submit"
         >
-          Submit
+          Next
         </button>
       </form>
     </div>

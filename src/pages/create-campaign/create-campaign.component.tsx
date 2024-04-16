@@ -28,6 +28,7 @@ interface AdGroupCreate {
   keywords: string;
   keyword_match_types: string;
 }
+
 const Campaign: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const {
@@ -54,6 +55,8 @@ const Campaign: React.FC = () => {
 
   const {
     register: registerAdGroup,
+    getValues: getValuesAdGroup,
+    setValue: setValuesAdGroup,
     handleSubmit: handleSubmitAdGroup,
     formState: { errors: adGroupErrors },
   } = useForm<AdGroupCreate>({
@@ -71,19 +74,21 @@ const Campaign: React.FC = () => {
   const {
     register: registerAd,
     handleSubmit: handleSubmitAd,
+    setValue: setValuesAd,
+    getValues: getValuesAd,
     formState: { errors: adErrors },
   } = useForm<AdCreate>({
-    // Define your Ad form configuration here
+
+
   });
 
   const onSubmitCampaign = (formData: CampaignCreate) => {
-    alert("called");
     console.log(formData, "Campaign formData");
     setCurrent(current + 1); // Move to next step
   };
 
   const onSubmitAdGroup = (formData: AdGroupCreate) => {
-    console.log(formData, "AdGroup formData");
+    console.log(getValuesAdGroup(), "AdGroup formData");
     setCurrent(current + 1); // Move to next step
   };
 
@@ -116,6 +121,7 @@ const Campaign: React.FC = () => {
           handleSubmitCampaign={handleSubmitCampaign}
           registerCampaign={registerCampaign}
           setValuesCampaign={setValuesCampaign}
+          setValuesAdGroup={setValuesAdGroup}
           errorsCampaign={campaignErrors}
           onSubmitAdGroup={onSubmitAdGroup}
           handleSubmitAdGroup={handleSubmitAdGroup}

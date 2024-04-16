@@ -20,7 +20,7 @@ const keywords = [
   { id: 2, value: "exact" },
 ];
 
-const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit }) => {
+const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,setValuesAdGroup}) => {  
   console.log(errors);
   return (
     <div className="min-h-[70vh] p-10 relative">
@@ -37,16 +37,25 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit }) =
           id="geographic_targeting"
           label="Geographic Targeting"
           options={areas}
+          setValue={setValuesAdGroup}
+          register={register}
+          errorMessage={errors?.geographic_targeting?.message}
         />
         <SelectBase
           id="language_targeting"
           label="Language Targeting"
           options={languages}
+          setValue={setValuesAdGroup}
+          register={register}
+          errorMessage={errors?.language_targeting?.message}
         />
         <SelectBase
           id="age_targeting"
           label="Age Targeting"
           options={ages}
+          setValue={setValuesAdGroup}
+          register={register}
+          errorMessage={errors?.age_targeting?.message}
         />
         <TextInput
           // isRequired
@@ -61,6 +70,9 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit }) =
           id="keyword_match_types"
           label="Select Keyword Match Types"
           options={keywords}
+          setValue={setValuesAdGroup}
+          register={register}
+          errorMessage={errors?.keyword_match_types?.message}
         />
         <button
           className="absolute bottom-5 right-5 mr-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
