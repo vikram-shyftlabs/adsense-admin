@@ -39,6 +39,7 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           options={areas}
           setValue={setValuesAdGroup}
           register={register}
+          errorMessage={errors?.geographic_targeting?.message}
         />
         <SelectBase
           id="language_targeting"
@@ -46,6 +47,7 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           options={languages}
           setValue={setValuesAdGroup}
           register={register}
+          errorMessage={errors?.language_targeting?.message}
         />
         <SelectBase
           id="age_targeting"
@@ -53,6 +55,7 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           options={ages}
           setValue={setValuesAdGroup}
           register={register}
+          errorMessage={errors?.age_targeting?.message}
         />
         <TextInput
           // isRequired
@@ -69,6 +72,7 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           options={keywords}
           setValue={setValuesAdGroup}
           register={register}
+          errorMessage={errors?.keyword_match_types?.message}
         />
         <button
           className="absolute bottom-5 right-5 mr-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
