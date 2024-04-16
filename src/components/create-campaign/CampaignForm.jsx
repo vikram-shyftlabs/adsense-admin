@@ -1,9 +1,9 @@
 import React from 'react';
 import TextInput from "../../components/text-inputs/text-input.component";
 
-const CampaignForm = ({ errors, register, setCurrent }) => {
+const CampaignForm = ({ errors, register, setCurrent,onSubmit,handleSubmit }) => {
     return (
-        <div className='min-h-[70vh] p-10 relative'>
+        <form className='min-h-[70vh] p-10 relative' onSubmit={handleSubmit(onSubmit)}>
             <TextInput
                 isRequired
                 id="campaign_name"
@@ -26,7 +26,7 @@ const CampaignForm = ({ errors, register, setCurrent }) => {
             >
                 Next
             </button>
-        </div>
+        </form>
     );
 }
 
