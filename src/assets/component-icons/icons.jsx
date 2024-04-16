@@ -96,13 +96,13 @@ const ChevronUpIcon = (props) => (
     <path d="m6 15 6-6 6 6" />
   </svg>
 );
-const ChevronDownIcon = (props) => (
-  <svg
+const ChevronDownIcon = ({props}) => (
+    <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={44}
-    height={44}
+    width={props.width}
+    height={props.height}
     fill="none"
-    stroke="#2c3e50"
+    stroke="#000"
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={1.5}
