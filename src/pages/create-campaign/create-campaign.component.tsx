@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Steps } from 'antd';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { campaignFormValidationSchema } from "../../helpers/schema.yup";
-import TextInput from "../../components/text-inputs/text-input.component";
-
+import CreateCampaignForm from "../../components/create-campaign/create-campaign-form.jsx";
+import Header from "../../components/header/header.component";
 interface CampaignCreate {
   campaign_name: string;
   adItem_name: string;
 }
 
 const Campaign: React.FC = () => {
+  const [current, setCurrent] = useState(0);
+
   const {
     register,
     handleSubmit,
@@ -28,27 +31,24 @@ const Campaign: React.FC = () => {
 
   return (
     <div>
-      <h2>Campaign</h2>
-      <p>This is the Campaign page.</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          isRequired
-          id="campaign_name"
-          label="Campaign Name"
-          placeholder="Campaign Name"
-          register={register}
-          errorMessage={errors.adItem_name?.message}
-          customClass="mt-5"
+      <Header props={{ title: "Add new Campaign" }} />
+      <div className="p-12">
+        <Steps
+          current={current}
+          items={[
+            {
+              title: 'Campaign',
+            },
+            {
+              title: 'Ad Group',
+            },
+            {
+              title: 'Ads',
+            },
+          ]}
         />
-        <TextInput
-          isRequired
-          id="adItem_name"
-          label="Ad Item Name"
-          register={register}
-          placeholder="Ad item name"
-          errorMessage={errors.adItem_name?.message}
-        />
-      </form>
+        <CreateCampaignForm current={current} onSubmit={onSubmit} handleSubmit={handleSubmit} register={register} errors={errors} setCurrent={setCurrent} />
+      </div>
     </div>
   );
 };
