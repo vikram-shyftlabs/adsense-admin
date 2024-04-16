@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Steps } from 'antd';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { campaignFormValidationSchema } from "../../helpers/schema.yup";
+import { campaignFormValidationSchema,adGroupFormValidationSchema } from "../../helpers/schema.yup";
 import CreateCampaignForm from "../../components/create-campaign/create-campaign-form.jsx";
 
 import Header from "../../components/header/header.component";
@@ -17,8 +17,16 @@ interface CampaignCreate {
   bid_amount: number;
 }
 
+interface AdGroupCreate {
+  name: string;
+  geographic_targeting: string;
+  language_targeting: string;
+  age_targeting: string;
+  keywords: string;
+  keyword_match_types: string;
+}
 const Campaign: React.FC = () => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1);
   const {
     register: registerCampaign,
     handleSubmit: handleSubmitCampaign,
@@ -27,12 +35,12 @@ const Campaign: React.FC = () => {
     defaultValues: {
       name: "",
       platform: "",
-      objective:"",
+      objective: "",
       daily_budget: 0,
       // start_date:"",
       // end_date:"",
-      bidding_strategy:"",
-      bid_amount:0,
+      bidding_strategy: "",
+      bid_amount: 0,
 
     },
     resolver: yupResolver(campaignFormValidationSchema),
@@ -43,7 +51,15 @@ const Campaign: React.FC = () => {
     handleSubmit: handleSubmitAdGroup,
     formState: { errors: adGroupErrors },
   } = useForm<AdGroupCreate>({
-    // Define your AdGroup form configuration here
+    defaultValues: {
+      name: "",
+      geographic_targeting: "",
+      language_targeting: "",
+      age_targeting: "",
+      keywords: "",
+      keyword_match_types: "",
+    },
+    resolver: yupResolver(adGroupFormValidationSchema),
   });
 
   const {
@@ -90,10 +106,10 @@ const Campaign: React.FC = () => {
           ]}
         />
         <CreateCampaignForm current={current}
-         onSubmitCampaign={onSubmitCampaign} handleSubmitCampaign={handleSubmitCampaign} registerCampaign={registerCampaign} errorsCampaign={campaignErrors}
-         onSubmitAdGroup={onSubmitAdGroup} handleSubmitAdGroup={handleSubmitAdGroup} registerAdGroup={registerAdGroup} errorsAdGroup={adGroupErrors}
-         onSubmitAd={onSubmitAd} handleSubmitAd={handleSubmitAd} registerAd={registerAd} errorsAd={adErrors}
-         setCurrent={setCurrent} />
+          onSubmitCampaign={onSubmitCampaign} handleSubmitCampaign={handleSubmitCampaign} registerCampaign={registerCampaign} errorsCampaign={campaignErrors}
+          onSubmitAdGroup={onSubmitAdGroup} handleSubmitAdGroup={handleSubmitAdGroup} registerAdGroup={registerAdGroup} errorsAdGroup={adGroupErrors}
+          onSubmitAd={onSubmitAd} handleSubmitAd={handleSubmitAd} registerAd={registerAd} errorsAd={adErrors}
+          setCurrent={setCurrent} />
       </div>
     </div>
   );

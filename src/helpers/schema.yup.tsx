@@ -11,4 +11,12 @@ const campaignFormValidationSchema = yup.object({
   bid_amount: yup.number().required("Bid Amount is Required"),
 });
 
-export { campaignFormValidationSchema };
+const adGroupFormValidationSchema = yup.object({
+  name: yup.string().required("AdGroup Name is Required").min(3),
+  geographic_targeting: yup.string().required("Geographic Targeting is Required"),
+  language_targeting: yup.string().required("Language Targeting is Required"),
+  age_targeting: yup.string().required("Age Targeting is Required"),
+  keywords: yup.string().required("Keywords is Required"),
+  keyword_match_types: yup.string().required("Keyword Match Type is Required"),
+});
+export { campaignFormValidationSchema,adGroupFormValidationSchema };
