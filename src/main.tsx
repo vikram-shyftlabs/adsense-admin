@@ -4,15 +4,16 @@ import "./index.css";
 import Dashboard from "./pages/dashboard/dashboard.container.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Campaign from "./pages/create-campaign/create-campaign.component.tsx";
+import SidebarComponent from "./components/sidebar/sidebar.component.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: <SidebarComponent component={Dashboard}/>,
   },
   {
     path: "/campaigns",
-    element: <Campaign />,
+    element: <SidebarComponent component={Campaign} />,
   },
 ]);
 
