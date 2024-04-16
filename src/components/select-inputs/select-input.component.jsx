@@ -1,22 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
 import Transition from "../../utils/Transition";
-import { UseFormRegister } from "react-hook-form";
+// import { UseFormRegister } from "react-hook-form";
 
-interface IValueMap {
-  id: number;
-  key: string;
-  value: string /* can be any though */;
-}
+// interface IValueMap {
+//   id: number;
+//   key: string;
+//   value: string /* can be any though */;
+// }
 
-interface ISelectProps {
-  label: string;
-  options: Array<IValueMap>;
-  customClass?: React.ComponentProps<"div">["className"];
-  helperText?: string;
-  errorMessage?: string;
-  register: UseFormRegister<any>;
-  id: string;
-}
+// interface ISelectProps {
+//   label: string;
+//   options: Array<IValueMap>;
+//   customClass?: React.ComponentProps<"div">["className"];
+//   helperText?: string;
+//   errorMessage?: string;
+//   register: UseFormRegister<any>;
+//   id: string;
+// }
 
 function SelectBase({
   label,
@@ -27,7 +27,7 @@ function SelectBase({
   register,
   setValue,
   id,
-}: ISelectProps) {
+}) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selected, setSelected] = useState(options[0]?.id);
 

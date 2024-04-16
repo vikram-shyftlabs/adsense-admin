@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Steps } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,6 +29,8 @@ interface AdGroupCreate {
   keyword_match_types: string;
 }
 
+interface AdCreate {}
+
 const Campaign: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const {
@@ -55,7 +57,7 @@ const Campaign: React.FC = () => {
 
   const {
     register: registerAdGroup,
-    getValues: getValuesAdGroup,
+    // getValues: getValuesAdGroup,
     setValue: setValuesAdGroup,
     handleSubmit: handleSubmitAdGroup,
     formState: { errors: adGroupErrors },
@@ -74,21 +76,18 @@ const Campaign: React.FC = () => {
   const {
     register: registerAd,
     handleSubmit: handleSubmitAd,
-    setValue: setValuesAd,
-    getValues: getValuesAd,
+    // setValue: setValuesAd,
+    // getValues: getValuesAd,
     formState: { errors: adErrors },
-  } = useForm<AdCreate>({
-
-
-  });
+  } = useForm<AdCreate>({});
 
   const onSubmitCampaign = (formData: CampaignCreate) => {
     console.log(formData, "Campaign formData");
     setCurrent(current + 1); // Move to next step
   };
 
-  const onSubmitAdGroup = (formData: AdGroupCreate) => {
-    console.log(getValuesAdGroup(), "AdGroup formData");
+  const onSubmitAdGroup = () => {
+    // console.log(getValuesAdGroup(), formData, "AdGroup formData");
     setCurrent(current + 1); // Move to next step
   };
 

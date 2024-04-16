@@ -4,17 +4,22 @@ import {
   CampaignIcon,
   FileTextIcon,
   AccountIcon,
-} from "../../assets/component-icons/icons";
-import { Layout, Menu, theme } from "antd";
+} from "../../assets/component-icons/icons"; /* UNCOMMENT as needed */
+// import { Layout, Menu, theme } from "antd";
+import { Layout, Menu } from "antd";
+
 import { Link, useLocation } from "react-router-dom"; // Import Link from react-router-dom for navigation
 const { Sider } = Layout;
 
 const SidebarComponent = ({ component: Component }) => {
   const { pathname } = useLocation();
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const [collapsed] = useState(false);
+
+  // const [collapsed, setCollapsed] = useState(false);
+
+  // const {
+  //   token: { colorBgContainer, borderRadiusLG },
+  // } = theme.useToken();
 
   return (
     <Layout>

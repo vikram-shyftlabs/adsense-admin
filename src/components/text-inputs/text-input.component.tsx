@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { UseFormRegister } from "react-hook-form";
 
@@ -36,7 +37,6 @@ const TextInput = ({
   size = "normal", // can be 'small', 'normal', 'large'
   state = "default", // can be 'default', 'disabled', 'error'
   customClass,
-  ...inputProps
 }: ITextInputProps) => {
   const inputClass = `form-input w-full ${
     size === "small" ? "px-2 py-1" : size === "large" ? "px-4 py-3" : ""
