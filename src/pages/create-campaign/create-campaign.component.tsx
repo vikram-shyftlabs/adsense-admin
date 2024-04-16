@@ -7,8 +7,14 @@ import CreateCampaignForm from "../../components/create-campaign/create-campaign
 
 import Header from "../../components/header/header.component";
 interface CampaignCreate {
-  campaign_name: string;
-  adItem_name: string;
+  name: string;
+  platform: string;
+  objective: string;
+  daily_budget: number;
+  start_date: string;
+  end_date: string;
+  bidding_strategy: string;
+  bid_amount: number;
 }
 
 const Campaign: React.FC = () => {
@@ -19,8 +25,15 @@ const Campaign: React.FC = () => {
     formState: { errors: campaignErrors },
   } = useForm<CampaignCreate>({
     defaultValues: {
-      campaign_name: "",
-      adItem_name: "",
+      name: "",
+      platform: "",
+      objective:"",
+      daily_budget: 0,
+      // start_date:"",
+      // end_date:"",
+      bidding_strategy:"",
+      bid_amount:0,
+
     },
     resolver: yupResolver(campaignFormValidationSchema),
   });
@@ -42,6 +55,7 @@ const Campaign: React.FC = () => {
   });
 
   const onSubmitCampaign = (formData: CampaignCreate) => {
+    alert('called')
     console.log(formData, "Campaign formData");
     setCurrent(current + 1); // Move to next step
   };
@@ -55,6 +69,7 @@ const Campaign: React.FC = () => {
     console.log(formData, "Ad formData");
     // Handle submission of Ads form
   };
+
 
   return (
     <div>

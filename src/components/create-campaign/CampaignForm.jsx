@@ -14,12 +14,13 @@ const biddingStrategies = [
     { id: 2, value: "Target ROAS"} 
 ]
 
-const CampaignForm = ({ errors, register, setCurrent }) => {
+const CampaignForm = ({ errors, register, setCurrent, onSubmit, handleSubmit }) => {
+  console.log(errors);
   return (
     <div className="min-h-[70vh] p-10 relative">
-      <div className="grid grid-cols-2 gap-10">
+      <form className="grid grid-cols-2 gap-10" onSubmit={handleSubmit(onSubmit)}>
         <TextInput
-          isRequired
+          // isRequired
           id="name"
           label="Campaign Name"
           placeholder="Enter Campaign Name"
@@ -35,6 +36,8 @@ const CampaignForm = ({ errors, register, setCurrent }) => {
           id="objective"
           label="Select Campaign Objective"
           options={campaignObjectives}
+          helperText={errors?.objective?.message}
+
         />
         <TextInput
           isRequired
@@ -42,7 +45,7 @@ const CampaignForm = ({ errors, register, setCurrent }) => {
           label="Daily Budget"
           register={register}
           placeholder="Enter Daily Budget"
-          errorMessage={errors.daily_budget?.message}
+          errorMessage={errors?.daily_budget?.message}
         />
         <SelectBase
           id="bidding_strategy"
@@ -55,15 +58,15 @@ const CampaignForm = ({ errors, register, setCurrent }) => {
           label="Enter Bid Amount"
           register={register}
           placeholder="Enter Bid Amount"
-          errorMessage={errors.bid_amount?.message}
+          errorMessage={errors?.bid_amount?.message}
         />
         <button
           className="absolute bottom-5 right-5 mr-10 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-8 rounded"
-          onClick={() => setCurrent(1)}
+          type="submit"
         >
-          Next
+          Submit
         </button>
-      </div>
+      </form>
     </div>
   );
 };
