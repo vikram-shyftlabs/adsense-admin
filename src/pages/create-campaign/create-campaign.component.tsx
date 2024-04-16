@@ -26,7 +26,7 @@ interface AdGroupCreate {
   keyword_match_types: string;
 }
 const Campaign: React.FC = () => {
-  const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(0);
   const {
     register: registerCampaign,
     handleSubmit: handleSubmitCampaign,
@@ -37,10 +37,10 @@ const Campaign: React.FC = () => {
       platform: "",
       objective: "",
       daily_budget: 0,
-      // start_date:"",
-      // end_date:"",
-      bidding_strategy: "",
-      bid_amount: 0,
+      start_date:"",
+      end_date:"",
+      bidding_strategy:"",
+      bid_amount:0,
 
     },
     resolver: yupResolver(campaignFormValidationSchema),

@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Transition from '../../utils/Transition';
+import { UseFormRegister } from "react-hook-form";
 
 interface IValueMap {
   id: number;
@@ -12,9 +13,12 @@ interface ISelectProps {
   options: Array<IValueMap>;
   customClass?: React.ComponentProps<'div'>['className'];
   helperText?: string;
+  errorMessage?:string;
+  register?: UseFormRegister<any>;
+  id: string;
 }
 
-function SelectBase({label, options, customClass, helperText}: ISelectProps) {
+function SelectBase({label, options, customClass, helperText, errorMessage, register, id}: ISelectProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selected, setSelected] = useState(options[0]?.id);
 
@@ -100,9 +104,11 @@ function SelectBase({label, options, customClass, helperText}: ISelectProps) {
                 className={`flex items-center w-full  hover:bg-slate-50 py-1 px-3 cursor-pointer ${
                   option.id === selected && 'text-indigo-500'
                 }`}
+                {...(register ? register(id) : {})}
                 onClick={() => {
                   setSelected(option.id);
                   setDropdownOpen(false);
+                  
                 }}
               >
                 <svg
@@ -123,10 +129,18 @@ function SelectBase({label, options, customClass, helperText}: ISelectProps) {
       </div>
       {helperText && (
         <label
-          className="block text-xs font-normal text-slate-400 mt-2 mb-1"
+          className="block text-xs font-normal text-slate-400 mt-2 mb-1 "
           htmlFor={label}
         >
           {helperText}
+        </label>
+      )}
+      {errorMessage && (
+        <label
+          className="block text-xs font-normal text-slate-400 mt-2 mb-1 text-red-500"
+          htmlFor={label}
+        >
+          {errorMessage}
         </label>
       )}
     </div>
