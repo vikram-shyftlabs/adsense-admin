@@ -5,7 +5,6 @@ import Dashboard from "./pages/dashboard/dashboard.container.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Campaign from "./pages/create-campaign/create-campaign.component.tsx";
 import SidebarComponent from "./components/sidebar/sidebar.component.jsx";
-import Login from "./pages/accout/account.tsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import store,{persistor} from "./redux/store/store.js";
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/account",
-    element:  <SidebarComponent component={Account} />,
+    element: <SidebarComponent component={Account} />,
   },
 ]);
 

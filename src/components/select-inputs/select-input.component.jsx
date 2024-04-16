@@ -29,7 +29,7 @@ function SelectBase({
   id,
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selected, setSelected] = useState(options[0]?.id);
+  const [selected, setSelected] = useState();
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
@@ -76,7 +76,7 @@ function SelectBase({
           aria-expanded={dropdownOpen}
         >
           <span className="flex items-center pl-3">
-            <span>{options[selected].value}</span>
+            <span>{selected === undefined ? "Select Option" : options[selected].value}</span>
           </span>
           <svg
             className="shrink-0 ml-1 fill-current text-slate-400 mr-3 mt-2"
@@ -145,7 +145,7 @@ function SelectBase({
           {helperText}
         </label>
       )}
-      {errorMessage && (
+      {selected === undefined && (
         <label
           className="block text-xs font-normal text-slate-400 mt-2 mb-1 text-red-500"
           htmlFor={label}
