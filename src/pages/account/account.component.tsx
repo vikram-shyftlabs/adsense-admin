@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Card } from "antd";
+import { useState } from "react";
+import { Card } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 import { LoginSocialGoogle, LoginSocialFacebook } from "reactjs-social-login";
 import Header from "../../components/header/header.component";
