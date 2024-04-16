@@ -35,7 +35,16 @@ const Account = () => {
     );
   };
 
-  console.log(googleToken);
+  const getRedirectUrl = () => {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+      // dev code
+      return "http://localhost:5173/";
+    } else {
+      return "https://adsense-admin.illuminz.io/";
+      // production code
+    }
+  };
+
   return (
     <div>
       <Header props={{ title: "Account" }} />
@@ -48,7 +57,7 @@ const Account = () => {
             isOnlyGetToken
             client_id={clientId}
             onLoginStart={() => console.log("Login start")}
-            redirect_uri={"http://localhost:5173"}
+            redirect_uri={getRedirectUrl}
             onResolve={onGoogleSuccess}
             onReject={(err) => {
               console.log(err);
