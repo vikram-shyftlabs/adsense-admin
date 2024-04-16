@@ -3,20 +3,35 @@ import { Button, Card } from 'antd';
 import { FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
 import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 import Header from '../../components/header/header.component';
+import { setGoogleToken,setFacebookToken } from "../../redux/slices/AccountLinkSlice"; 
+import { useDispatch,useSelector } from 'react-redux';
 
-const clientId = '939446384253-4fppn78g2l7lcakcq26qs8kqnr73u4nk.apps.googleusercontent.com'; // Replace with your Google OAuth2 Client ID
-
+const clientId = '939446384253-4fppn78g2l7lcakcq26qs8kqnr73u4nk.apps.googleusercontent.com'; 
 
 const Account = () => {
     const [provider, setProvider] = useState(null);
     const [data, setData] = useState({});
+    const googleToken = useSelector(state => state.accountLink.googleToken);
+    const dispatch = useDispatch();
 
-    const onLogin = ({ provider, data }) => {
-        console.log(data);
-        setProvider(provider);
-        setData(data)
+    const onGoogleSuccess = ({ provider, data }) => {
+        dispatch(
+            setGoogleToken({ 
+                provider,
+                data
+            })
+        );
+    }
+    const onFacebookSuccess = ({ provider, data }) => {
+        dispatch(
+            setFacebookToken({ 
+                provider,
+                data
+            })
+        );
     }
 
+    console.log(googleToken);
     return (
         <div>
             <Header props={{ title: "Account" }} />
@@ -28,7 +43,7 @@ const Account = () => {
                         client_id={clientId}
                         onLoginStart={() => console.log('Login start')}
                         redirect_uri={'http://localhost:5173'}
-                        onResolve={onLogin}
+                        onResolve={onGoogleSuccess}
                         onReject={err => {
                             console.log(err);
                         }}
@@ -47,7 +62,7 @@ const Account = () => {
                         appId='2192834227588742'
 
                         onLoginStart={() => console.log('Login start')}
-                        onResolve={onLogin}
+                        onResolve={onFacebookSuccess}
                         onReject={err => {
                             console.log(err);
                         }}
