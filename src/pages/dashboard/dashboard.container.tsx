@@ -1,10 +1,16 @@
 import React from "react";
-
+import Header from "../../components/header/header.component";
+import PieChart from "../../components/dashboard/PieChart.jsx";
 const Dashboard: React.FC = () => {
   return (
     <div>
-      <h2>Dashboard</h2>
-      <p>This is the Dashboard page.</p>
+      <Header props={{ title: "Dashboard" }} />
+      <div className="grid grid-cols-2 m-12 rounded-md">
+        <div className="p-8 border-[#dcdcdc] border rounded-md">
+          <h1 className="font-semibold text-xl">By Platform</h1>
+          <PieChart />
+        </div>
+      </div>
     </div>
   );
 };
