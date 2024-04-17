@@ -20,10 +20,10 @@ const keywords = [
   { id: 2, value: "exact" },
 ];
 
-const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,setValuesAdGroup}) => {  
+const AdGroupForm = ({ errors, register, onSubmit, handleSubmit, handleBack ,setValuesAdGroup, getValuesAdGroup}) => {  
   console.log(errors);
   return (
-    <div className="min-h-[70vh] p-10 relative">
+    <div className="min-h-[80vh] p-10 relative">
       <form className="grid grid-cols-2 gap-10" onSubmit={handleSubmit(onSubmit)}>
         <TextInput
           // isRequired
@@ -40,6 +40,7 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           setValue={setValuesAdGroup}
           register={register}
           errorMessage={errors?.geographic_targeting?.message}
+          getValue={getValuesAdGroup}
         />
         <SelectBase
           id="language_targeting"
@@ -48,6 +49,7 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           setValue={setValuesAdGroup}
           register={register}
           errorMessage={errors?.language_targeting?.message}
+          getValue={getValuesAdGroup}
         />
         <SelectBase
           id="age_targeting"
@@ -56,6 +58,7 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           setValue={setValuesAdGroup}
           register={register}
           errorMessage={errors?.age_targeting?.message}
+          getValue={getValuesAdGroup}
         />
         <TextInput
           // isRequired
@@ -73,13 +76,22 @@ const AdGroupForm = ({ errors, register, setCurrent, onSubmit, handleSubmit ,set
           setValue={setValuesAdGroup}
           register={register}
           errorMessage={errors?.keyword_match_types?.message}
+          getValue={getValuesAdGroup}
         />
-        <button
-          className="absolute bottom-5 right-5 mr-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >
-          Next
-        </button>
+        <div>
+            <button
+                className="absolute bottom-5 right-5 mr-40 border border-[blue] font-semibold py-2 px-8 rounded"
+                onClick={handleBack}
+            > 
+                Back
+            </button>
+            <button 
+                className='absolute bottom-5 right-5 mr-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded'
+                type='submit'
+            >
+                Next
+            </button>
+        </div>
       </form>
     </div>
   );

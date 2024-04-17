@@ -58,7 +58,7 @@ const Campaign: React.FC = () => {
 
   const {
     register: registerAdGroup,
-    // getValues: getValuesAdGroup,
+    getValues: getValuesAdGroup,
     setValue: setValuesAdGroup,
     handleSubmit: handleSubmitAdGroup,
     formState: { errors: adGroupErrors },
@@ -97,6 +97,10 @@ const Campaign: React.FC = () => {
     // Handle submission of Ads form
   };
 
+  const handleBack = () => {
+    setCurrent(current - 1);
+  }
+
   return (
     <div>
       <Header props={{ title: "Add New Campaign" }} />
@@ -131,7 +135,9 @@ const Campaign: React.FC = () => {
           handleSubmitAd={handleSubmitAd}
           registerAd={registerAd}
           errorsAd={adErrors}
-          setCurrent={setCurrent}
+          handleBack={handleBack}
+          getValuesCampaign={getValuesCampaign}
+          getValuesAdGroup={getValuesAdGroup}
         />
       </div>
     </div>
