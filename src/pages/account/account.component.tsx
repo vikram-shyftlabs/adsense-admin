@@ -18,6 +18,8 @@ const Account = () => {
   const { googleToken, facebookToken } = useSelector(
     (state) => state.accountLink
   );
+  console.log(googleToken, "googleToken");
+
   const dispatch = useDispatch();
 
   const onGoogleSuccess = ({ provider, data }) => {
@@ -51,7 +53,7 @@ const Account = () => {
               isOnlyGetToken
               client_id={clientId}
               onLoginStart={() => console.log("Login start")}
-              redirect_uri={"http://localhost:5173"}
+              redirect_uri={"https://adsense-admin.illuminz.io/"}
               onResolve={onGoogleSuccess}
               onReject={(err) => {
                 console.log(err);
