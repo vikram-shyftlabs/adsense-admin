@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   flexRender,
   getCoreRowModel,
@@ -14,7 +13,7 @@ interface ITableProps {
   footerButtonAction?: () => void;
 }
 declare module '@tanstack/react-table' {
-  interface TableMeta<TData extends RowData> {
+  interface TableMeta<TData > {
     updateData: (rowIndex: number, columnId: string, value: unknown) => void;
   }
 }

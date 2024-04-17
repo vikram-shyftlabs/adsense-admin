@@ -4,17 +4,17 @@ export const campaignApi = createApi({
   reducerPath: "campaignApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://pokeapi.co/api/v2/pokemon",
-	prepareHeaders: (headers, { getState }) => {
-		// Add any common headers here if needed
-		const token = getState().accountLink.token;
-		if (token) {
-			headers.set("Authorization", `Bearer ${token}`);
-		  }
-		headers.set("Content-Type", "application/json");
-		headers.set("Accept", "application/json");
+    prepareHeaders: (headers, { getState }) => {
+      // Add any common headers here if needed
+      const token = getState().accountLink.token;
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      headers.set("Content-Type", "application/json");
+      headers.set("Accept", "application/json");
 
-		return headers;
-	  },
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     getAllPokemon: builder.query({
@@ -30,7 +30,21 @@ export const campaignApi = createApi({
         body: data,
       }),
     }),
+    getCampaign: builder.query({
+      query: () => ({
+        url: "",
+        method: "GET",
+      }),
+    }),
+    searchCampaign: builder.mutation({
+      query: (data) => ({
+        url: "/searchCampaign",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
   }),
 });
 
-export const { useGetAllPokemonQuery, useCreateCampaignMutation } = campaignApi;
+export const { useGetAllPokemonQuery, useCreateCampaignMutation ,useGetCampaignQuery,useSearchCampaignMutation} = campaignApi;

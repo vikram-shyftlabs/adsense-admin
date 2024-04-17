@@ -3,10 +3,13 @@ import TableGrid from "../../data-table/table.container";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { SearchIcon } from "../../../assets/component-icons/icons";
+import { useSearchCampaignMutation } from "../../../redux/services/campaign/campaignSlice";
 
 const CampaignTab = ({ data, columns, setData }) => {
+  const [searchCampaign] = useSearchCampaignMutation();
+  
   const handleSearch = (event) => {
-    console.log(event.target.value);
+    searchCampaign({data:event.target.value});
   }
 
   return (
