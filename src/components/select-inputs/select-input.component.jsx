@@ -147,7 +147,7 @@ function SelectBase({
       )}
       {selected === undefined && (
         <label
-          className="block text-xs font-normal text-slate-400 mt-2 mb-1 text-red-500"
+          className="block text-xs font-normal text-slate-400 mt-2 mb-1 text-[#F43F5E]"
           htmlFor={label}
         >
           {errorMessage}
