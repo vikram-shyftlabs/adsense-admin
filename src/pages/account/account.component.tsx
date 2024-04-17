@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
 import { Card } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 import { LoginSocialGoogle, LoginSocialFacebook } from "reactjs-social-login";
