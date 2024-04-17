@@ -3,15 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface IAccountState {
   googleToken: string;
   facebookToken: string;
-  isLoading: boolean;
-  error: null;
+  token: string;
 }
 
 const initialState = {
   googleToken: "",
   facebookToken: "",
-  isLoading: false,
-  error: null,
+  token:"",
 };
 
 const accountLinkSlice = createSlice({
@@ -19,13 +17,16 @@ const accountLinkSlice = createSlice({
   initialState,
   reducers: {
     setGoogleToken: (state: IAccountState, action) => {
-      state.googleToken = action.payload;
+      state.googleToken = action.payload.data.access_token;
     },
     setFacebookToken: (state: IAccountState, action) => {
-      state.facebookToken = action.payload;
+      state.facebookToken = action.payload.data.access_token;
+    },
+    setToken: (state: IAccountState, action) => {
+      state.token = action.payload;
     },
   },
 });
 
-export const { setGoogleToken, setFacebookToken } = accountLinkSlice.actions;
+export const { setGoogleToken, setFacebookToken,setToken } = accountLinkSlice.actions;
 export default accountLinkSlice.reducer;

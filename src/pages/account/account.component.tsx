@@ -6,7 +6,7 @@ import Header from "../../components/header/header.component";
 import {
   setGoogleToken,
   setFacebookToken,
-} from "../../redux/slices/AccountLinkSlice";
+} from "../../redux/slices/account-link/AccountLinkSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const clientId =
