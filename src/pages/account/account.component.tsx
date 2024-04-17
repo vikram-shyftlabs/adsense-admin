@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import { Card } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 import { LoginSocialGoogle, LoginSocialFacebook } from "reactjs-social-login";
@@ -13,8 +13,10 @@ const clientId =
   "939446384253-4fppn78g2l7lcakcq26qs8kqnr73u4nk.apps.googleusercontent.com";
 
 const Account = () => {
-  const googleToken = useSelector(
-    (state: any) => state?.accountLink?.googleToken
+  const [provider, setProvider] = useState(null);
+  const [data, setData] = useState({});
+  const { googleToken, facebookToken } = useSelector(
+    (state) => state.accountLink
   );
   console.log(googleToken, "googleToken");
 
@@ -37,45 +39,52 @@ const Account = () => {
     );
   };
 
+  console.log(googleToken, facebookToken);
   return (
     <div>
       <Header props={{ title: "Account" }} />
-      <Card className="w-full items-center flex justify-center min-h-[70vh]">
-        <h1 className="text-2xl font-bold py-8 text-center">
-          Link you Ads Account
-        </h1>
-        <div className="grid grid-cols-2 gap-4">
-          <LoginSocialGoogle
-            isOnlyGetToken
-            client_id={clientId}
-            onLoginStart={() => console.log("Login start")}
-            redirect_uri={"https://adsense-admin.illuminz.io/"}
-            onResolve={onGoogleSuccess}
-            onReject={(err) => {
-              console.log(err);
-            }}
-            className="border border-black w-full p-0 flex justify-center items-center rounded-md hover:bg-blue-500"
-          >
-            <button className="p-0 text-black w-full m-0 flex gap-5 justify-center hover:bg-blue-500 hover:text-white items-center">
+      <Card className="w-full items-center flex justify-center min-h-[92vh] bg-[#eee] ">
+        <div className="bg-[#fefefe] shadow-lg px-32 py-24 rounded-md ">
+          <h1 className="text-2xl font-bold pb-12 text-center">
+            Link your Ads Account
+          </h1>
+          <div className="grid grid-cols-2 gap-4">
+            <LoginSocialGoogle
+              isOnlyGetToken
+              client_id={clientId}
+              onLoginStart={() => console.log("Login start")}
+              redirect_uri={"https://adsense-admin.illuminz.io/"}
+              onResolve={onGoogleSuccess}
+              onReject={(err) => {
+                console.log(err);
+              }}
+              className="border border-black w-full px-6 flex gap-3 justify-center items-center rounded-md hover:border-blue-500 hover:bg-blue-500 hover:cursor-pointer hover:text-white"
+            >
               <GoogleOutlined className="text-xl" />
-              <span>Link with Google</span>
-            </button>
-          </LoginSocialGoogle>
+              {googleToken ? (
+                <span>Your Google Account is Linked!</span>
+              ) : (
+                <span>Link with Google</span>
+              )}
+            </LoginSocialGoogle>
 
-          <LoginSocialFacebook
-            appId="2192834227588742"
-            onLoginStart={() => console.log("Login start")}
-            onResolve={onFacebookSuccess}
-            onReject={(err) => {
-              console.log(err);
-            }}
-            className="border border-black w-full flex justify-center items-center py-2"
-          >
-            <button className="bg-white text-black w-full flex gap-5 justify-center items-center px-4">
+            <LoginSocialFacebook
+              appId="2192834227588742"
+              onLoginStart={() => console.log("Login start")}
+              onResolve={onFacebookSuccess}
+              onReject={(err) => {
+                console.log(err);
+              }}
+              className="border border-black w-full flex gap-3 justify-center items-center py-2 rounded-md hover:border-blue-500 hover:bg-blue-500 hover:cursor-pointer hover:text-white"
+            >
               <FacebookOutlined className="text-xl" />
-              <span>Link with Facebook</span>
-            </button>
-          </LoginSocialFacebook>
+              {facebookToken ? (
+                <span>Your Facebook Account is Linked!</span>
+              ) : (
+                <span>Link with Facebook</span>
+              )}
+            </LoginSocialFacebook>
+          </div>
         </div>
         {/*<LoginSocialFacebook*/}
         {/*    appId="YOUR_FACEBOOK_APP_ID"*/}

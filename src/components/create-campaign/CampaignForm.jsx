@@ -21,10 +21,11 @@ const biddingStrategies = [
 const CampaignForm = ({
   errors,
   register,
-  setCurrent,
   onSubmit,
   handleSubmit,
+  handleBack,
   setValuesCampaign,
+  getValuesCampaign,
 }) => {
   console.log(errors);
   return (
@@ -48,6 +49,7 @@ const CampaignForm = ({
           setValue={setValuesCampaign}
           options={advertisingPlatform}
           errorMessage={errors?.platform?.message}
+          getValue={getValuesCampaign}
         />
         <SelectBase
           id="objective"
@@ -56,6 +58,7 @@ const CampaignForm = ({
           register={register}
           setValue={setValuesCampaign}
           errorMessage={errors?.objective?.message}
+          getValue={getValuesCampaign}
         />
         <TextInput
           isRequired
@@ -72,6 +75,7 @@ const CampaignForm = ({
           errorMessage={errors?.bidding_strategy?.message}
           options={biddingStrategies}
           register={register}
+          getValue={getValuesCampaign}
         />
         <TextInput
           isRequired

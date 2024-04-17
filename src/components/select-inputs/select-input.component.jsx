@@ -27,9 +27,10 @@ function SelectBase({
   register,
   setValue,
   id,
+  getValue
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selected, setSelected] = useState(options[0]?.id);
+  const [selected, setSelected] = useState();
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
@@ -76,7 +77,7 @@ function SelectBase({
           aria-expanded={dropdownOpen}
         >
           <span className="flex items-center pl-3">
-            <span>{options[selected].value}</span>
+            <span>{getValue(id) ? getValue(id) : selected === undefined ? "Select Option" : options[selected].value}</span>
           </span>
           <svg
             className="shrink-0 ml-1 fill-current text-slate-400 mr-3 mt-2"
@@ -112,7 +113,7 @@ function SelectBase({
                 type="button"
                 tabIndex="0"
                 className={`flex items-center w-full  hover:bg-slate-50 py-1 px-3 cursor-pointer ${
-                  option.id === selected && "text-indigo-500"
+                  (option.id === selected) || (getValue(id) === option.value)  && "text-indigo-500"
                 }`}
                 onClick={() => {
                   setSelected(option.id);
@@ -123,7 +124,7 @@ function SelectBase({
               >
                 <svg
                   className={`shrink-0 mr-2 fill-current text-indigo-500 ${
-                    option.id !== selected && "invisible"
+                    (option.id !== selected && (getValue(id) !== option.value)) && "invisible"
                   }`}
                   width="12"
                   height="9"
@@ -145,9 +146,9 @@ function SelectBase({
           {helperText}
         </label>
       )}
-      {errorMessage && (
+      {selected === undefined && (
         <label
-          className="block text-xs font-normal text-slate-400 mt-2 mb-1 text-red-500"
+          className="block text-xs font-normal text-slate-400 mt-2 mb-1 text-[#F43F5E]"
           htmlFor={label}
         >
           {errorMessage}

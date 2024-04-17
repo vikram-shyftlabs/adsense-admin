@@ -19,7 +19,9 @@ const CreateCampaignForm = ({
   handleSubmitAd,
   registerAd,
   errorsAd,
-  setCurrent,
+  handleBack,
+  getValuesCampaign,
+  getValuesAdGroup
 }) => {
   return (
     <div>
@@ -28,26 +30,27 @@ const CreateCampaignForm = ({
           errors={errorsCampaign}
           setValuesCampaign={setValuesCampaign}
           register={registerCampaign}
-          setCurrent={setCurrent}
           onSubmit={onSubmitCampaign}
           handleSubmit={handleSubmitCampaign}
+          getValuesCampaign={getValuesCampaign}
         />
       ) : current === 1 ? (
         <AdGroupForm
           errors={errorsAdGroup}
           register={registerAdGroup}
-          setCurrent={setCurrent}
           onSubmit={onSubmitAdGroup}
           setValuesAdGroup={setValuesAdGroup}
           handleSubmit={handleSubmitAdGroup}
+          handleBack={handleBack}
+          getValuesAdGroup={getValuesAdGroup}
         />
       ) : current === 2 ? (
         <AdsForm
           errors={errorsAd}
           register={registerAd}
-          setCurrent={setCurrent}
           onSubmit={onSubmitAd}
           handleSubmit={handleSubmitAd}
+          handleBack={handleBack}
         />
       ) : null}      
     </div>
