@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Card } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
@@ -13,10 +14,8 @@ const clientId =
   "939446384253-4fppn78g2l7lcakcq26qs8kqnr73u4nk.apps.googleusercontent.com";
 
 const Account = () => {
-  const [provider, setProvider] = useState(null);
-  const [data, setData] = useState({});
   const { googleToken, facebookToken } = useSelector(
-    (state) => state.accountLink
+    (state: any) => state.accountLink
   );
   console.log(googleToken, "googleToken");
 
