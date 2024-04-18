@@ -23,14 +23,14 @@ const SidebarComponent = ({ component: Component }) => {
 
   return (
     <Layout>
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        className="min-h-screen fixed"
+      <Sider       
+        className="min-h-screen w-[10px]"
+        style={{
+          position: 'fixed',
+        }}
       >
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]} >
           <Menu.Item
             key="/"
             icon={<HomeIcon props={{ width: 20, height: 20 }} />}
@@ -57,7 +57,7 @@ const SidebarComponent = ({ component: Component }) => {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout>
+      <Layout className="ml-48">
         <Component />
       </Layout>
     </Layout>
