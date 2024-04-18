@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const clientId =
-  "939446384253-4fppn78g2l7lcakcq26qs8kqnr73u4nk.apps.googleusercontent.com";
+  "48562295838-mk950nhms1tgfkr1ok9vo16lpq2paiuo.apps.googleusercontent.com";
 
 const Account = () => {
   const { googleToken, facebookToken } = useSelector(
@@ -37,7 +37,6 @@ const Account = () => {
     );
   };
 
-  console.log(googleToken, facebookToken);
   return (
     <div>
       <Header props={{ title: "Account" }} />
