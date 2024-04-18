@@ -25,6 +25,9 @@ const SidebarComponent = ({ component: Component }) => {
     <Layout>
       <Sider       
         className="min-h-screen w-[10px]"
+        style={{
+          position: 'fixed',
+        }}
       >
         <div className="demo-logo-vertical" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]} >
@@ -54,7 +57,7 @@ const SidebarComponent = ({ component: Component }) => {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout>
+      <Layout className="ml-48">
         <Component />
       </Layout>
     </Layout>
