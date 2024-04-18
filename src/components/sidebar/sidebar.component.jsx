@@ -23,14 +23,14 @@ const SidebarComponent = ({ component: Component }) => {
 
   return (
     <Layout>
-      <Sider       
+      <Sider
         className="min-h-screen w-[10px]"
         style={{
-          position: 'fixed',
+          position: "fixed",
         }}
       >
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]} >
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]}>
           <Menu.Item
             key="/"
             icon={<HomeIcon props={{ width: 20, height: 20 }} />}
@@ -43,12 +43,12 @@ const SidebarComponent = ({ component: Component }) => {
           >
             <Link to="/campaigns">Campaign</Link>
           </Menu.Item>
-          <Menu.Item
+          {/* <Menu.Item
             key="/report"
             icon={<FileTextIcon props={{ width: 20, height: 20 }} />}
           >
             <Link to="/report">Report</Link>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item
             key="/account"
             icon={<AccountIcon props={{ width: 20, height: 20 }} />}
